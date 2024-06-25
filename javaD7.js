@@ -1,39 +1,40 @@
 /* ESERCIZIO 1
        Scrivi una funzione per cambiare il titolo della pagina in qualcos'altro
     */
-
-const changeTitle = function () {
-  document.querySelector("h1").innerText = "Iniziamo a manipolare il DOM";
-};
-changeTitle();
+const titolo = document.querySelector("h1");
+titolo.innerText = "Iniziamo a manipolare il DOM";
+console.log(titolo);
 /* ESERCIZIO 2
         Scrivi una funzione per aggiungere al titolo della pagina una classe "myHeading"
      */
 
-const addClassToTitle = function () {
-  document.getElementsByTagName("h1")[0].classList.add("myHeading");
+const addClassToTitle = () => {
+  titolo.classList.add("myHeading", "classe2"); // entrano due classi o più 1 modo, aggiunge una o più classi alla precedente.
+  (titolo.className = "myHeading"), "classe2"; // secondo metodo si sovascrive la classe presente e cancella la precedente
 };
-addClassToTitle();
+
 /* ESERCIZIO 3
         Scrivi una funzione che cambi il testo dei p figli di un div
        */
 
 const changePcontent = function () {
-  document
-    .querySelectorAll("div>p")
-    .forEach((p) => (p.innerText = "Ciao mamma guarda come mi diverto."));
+  const newP = document.querySelectorAll("div > p");
+  newP.forEach((element) => {
+    element.innerText = "ciao sono un nuovo paragrafo";
+    element.className = "ciao";
+  });
 };
 changePcontent();
 /* ESERCIZIO 4
         Scrivi una funzione che cambi la proprietà href di ogni link (tranne quello nel footer) con il valore https://www.google.com
        */
 
-const changeUrls = function () {
-  const a = document.querySelectorAll("a:not(footer a)");
-  for (let i = 0; i < a.length; i++) {
-    const element = a[i];
-    element.href = "https://www.google.com";
-  }
+const changeUrls = () => {
+  const link = document.querySelectorAll("a:not(footer a )"); //setAttribute vado a cambiare gli attributi
+  link.forEach((element) => {
+    element.setAttribute("href", "https://www.google.com"); //primo parametro attributo , secondo il valore
+    element.href = "https://www.google.com"; //secondo modo
+  });
 };
 changeUrls();
 
@@ -41,10 +42,11 @@ changeUrls();
         Scrivi una funzione che aggiunga un nuovo elemento lista alla seconda lista non ordinata
      */
 
-const addToTheSecond = function () {
-  const newLi = document.createElement("li");
-  newLi.innerText = "4rd new";
-  document.getElementById("secondList").appendChild(newLi);
+const addToTheSecond = () => {
+  const UnorderL = document.getElementById("secondList");
+  const newList = document.createElement("li");
+  newList.innerText = "ciao amici";
+  UnorderL.appendChild(newList);
 };
 addToTheSecond();
 /* ESERCIZIO 6
@@ -52,9 +54,10 @@ addToTheSecond();
      */
 
 const addParagraph = function () {
-  const newP = document.createElement("p");
-  newP.innerText = " Ciao sono un nuovo paragrafo";
-  document.querySelector("div").appendChild(newP);
+  const addParagraph = document.querySelector("body > div:first-child");
+  const newPara = document.createElement("p");
+  newPara.innerText = "ciao";
+  addParagraph.appendChild(newPara);
 };
 addParagraph();
 /* ESERCIZIO 7
@@ -62,46 +65,48 @@ addParagraph();
      */
 
 const hideFirstUl = function () {
-  document.querySelector("ul").style.opacity = "0";
+  const list = document.getElementById("firstList");
+  list.style.display = "none";
 };
-hideFirstUl();
+/* hideFirstUl(); */
 /* ESERCIZIO 8 
         Scrivi una funzione che renda verde il background di ogni lista non ordinata
        */
 
 const paintItGreen = function () {
-  document
-    .querySelectorAll("ul")
-    .forEach((ul) => (ul.style.backgroundColor = "green"));
+  const ULlist = document.querySelectorAll("ul");
+  ULlist.forEach((element) => {
+    element.style.backgroundColor = "green";
+  });
 };
 paintItGreen();
 
 /* ESERCIZIO 9
         Scrivi una funzione che rimuova l'ultima lettera dall'h1 ogni volta che l'utente lo clicca
        */
-const titolo = document.querySelector("h1");
+/* const titolo = document.querySelector("h1");
 const makeItClickable = function () {
   // Aggiungi un evento di click all'elemento h1
   titolo.addEventListener("click", function () {
     // Rimuovi l'ultimo carattere dalla stringa del testo utilizzando slice
-    titolo.textContent = titolo.textContent.slice(0, -1);
+    titolo.innerText = titolo.innerText.slice(0, -1);
   });
 };
-makeItClickable();
+makeItClickable(); */
 /* ESERCIZIO 10
         Crea una funzione che, al click sul footer, riveli l'URL del link interno come contenuto di un alert()
        */
-document.querySelector("footer").addEventListener("click", function () {
+/* document.querySelector("footer").addEventListener("click", function () {
   const link = document.querySelector("footer a");
   /*   const url = link.a; */
-  alert("URL del link: " + link.href);
-});
+/*   alert("URL del link: " + link.href);
+}); 
 
 /* ESERCIZIO 11
         Crea una funzione che crei una tabella nell'elemento con id "tableArea". 
         La tabella avrà 5 elementi e questa struttura: immagine, nome prodotto, quantità, prezzo
      */
-const generateTable = function () {
+/* const generateTable = function () {
   const tableArea = document.getElementById("tableArea");
   //prendo l'id "tavleArea"
   const table = document.createElement("table");
@@ -211,12 +216,12 @@ const generateTable = function () {
   }
 };
 
-generateTable();
+generateTable(); */
 /* ESERCIZIO 12
         Crea una funzione che aggiunga una riga alla tabella precedentemente creata e fornisca i dati necessari come parametri
      */
 
-const addRow = function () {
+/* const addRow = function () {
   const table = document.getElementsByTagName("table")[0];
   const row1 = document.createElement("tr");
   table.appendChild(row1);
@@ -285,7 +290,7 @@ const addRow = function () {
 };
 
 addRow();
-
+ */
 /* ESERCIZIO 14
        Crea una funzione che nasconda le immagini della tabella quando eseguita
      */
@@ -303,7 +308,7 @@ hideAllImages(); */
 /* EXTRA ESERCIZIO 15
        Crea una funzione che cambi il colore del h2 con id "changeMyColor" con un colore random ad ogni click ricevuto
      */
-const changeColorWithRandom = function () {
+/* const changeColorWithRandom = function () {
   // Funzione per generare un colore random in formato esadecimale
   function getRandomColor() {
     return "#" + Math.floor(Math.random() * 12457845).toString(16);
@@ -323,3 +328,4 @@ const changeColorWithRandom = function () {
 
 // Chiamata alla funzione per attivare il cambio colore al click
 changeColorWithRandom();
+ */
