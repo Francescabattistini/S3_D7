@@ -103,16 +103,23 @@ document.querySelector("footer").addEventListener("click", function () {
      */
 const generateTable = function () {
   const tableArea = document.getElementById("tableArea");
+  //prendo l'id "tavleArea"
   const table = document.createElement("table");
+  // creo l'elemento tabella
   table.style.border = "1px solid black";
   const thead = document.createElement("thead");
+  // creo l'elemento thead
   const colonnaHeading1 = document.createElement("th");
+  // creo l'elemento th1
   colonnaHeading1.innerText = "immagine";
   const colonnaHeading2 = document.createElement("th");
+  // creo l'elemento th2
   colonnaHeading2.innerText = "nome prodotto";
   const colonnaHeading3 = document.createElement("th");
+  // creo l'elemento th3
   colonnaHeading3.innerText = "quantità";
   const colonnaHeading4 = document.createElement("th");
+  // creo l'elemento th4
   colonnaHeading4.innerText = "prezzo";
   tableArea.appendChild(table);
   table.appendChild(thead);
@@ -121,14 +128,14 @@ const generateTable = function () {
   thead.appendChild(colonnaHeading3);
   thead.appendChild(colonnaHeading4);
   for (let i = 0; i < 5; i++) {
-    const row = document.createElement("tr");
-    table.appendChild(row);
+    const riga = document.createElement("tr");
+    table.appendChild(riga);
   }
-  const rows = document.querySelectorAll("table tr");
-  for (let b = 0; b < rows.length; b++) {
+  const righe = document.querySelectorAll("table tr");
+  for (let b = 0; b < righe.length; b++) {
     for (let i = 0; i < 4; i++) {
       const td = document.createElement("td");
-      rows[b].appendChild(td);
+      righe[b].appendChild(td);
     }
   }
   const td = document.querySelectorAll("tr > td");
